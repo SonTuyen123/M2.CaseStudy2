@@ -29,23 +29,36 @@ var ManagerClub = /** @class */ (function () {
         }
     };
     ManagerClub.prototype.deletePlayer = function (nameclub, name) {
+        var flag = -1;
         ManagerClub.clubs.forEach(function (club, index) {
             if (club.club === nameclub) {
                 club.players.forEach(function (player, index) {
                     if (player.name === name) {
-                        club.players.splice(index, 1);
+                        flag = index;
                     }
                 });
             }
-            else {
-                console.log('không có câu lạc bộ ');
-            }
+            return flag;
         });
+        if (flag == -1) {
+            console.log("C\u1EA7u th\u1EE7 ".concat(name, " kh\u00F4ng t\u1ED3n t\u1EA1i trong c\u00E2u l\u1EA1c b\u1ED9 ").concat(nameclub));
+        }
+        else {
+            console.log(flag);
+            ManagerClub.clubs.forEach(function (club, index) {
+                if (club.club === nameclub) {
+                    club.players.forEach(function (player, index) {
+                        club.players.splice(flag, 1);
+                        console.log("\u0110\u00E3 x\u00F3a c\u1EA7u th\u1EE7 ".concat(name, " kh\u1ECFi c\u00E2u l\u1EA1c b\u1ED9 ").concat(nameclub));
+                    });
+                }
+            });
+        }
     };
     ManagerClub.prototype.addNewPlayer = function (nameClub, player) {
         ManagerClub.clubs.forEach(function (club, index) {
             if (club.club === nameClub) {
-                club.setPlayers(player);
+                club.players.push(player);
             }
             else {
                 console.log('Không tồn tại CLB này');
@@ -56,7 +69,7 @@ var ManagerClub = /** @class */ (function () {
         ManagerClub.clubs.forEach(function (club, index) {
             if (club.club === nameclub) {
                 club.players.forEach(function (player, index) {
-                    if (player.name === name) {
+                    if (player.name[index] === name) {
                         club.players[index] = players;
                     }
                 });
@@ -67,7 +80,7 @@ var ManagerClub = /** @class */ (function () {
         ManagerClub.clubs.forEach(function (club, index) {
             club.players.forEach(function (player, index) {
                 if (player.name === name) {
-                    return ("T\u00EAn CLB: ".concat(club.club, "\tHu\u1EA5n luy\u1EC7n vi\u00EAn:").concat(club.coach.name, "\t T\u00EAn c\u1EA7u th\u1EE7:").concat(club.players[index].name, "\tQu\u1ED1c t\u1ECBch:").concat(club.players[index].nationality, "\t Ng\u00E0y sinh:").concat(club.players[index].age, "\t S\u1ED1 b\u00E0n th\u1EAFng \u0111\u1EA1t \u0111\u01B0\u1EE3c:").concat(club.players[index].numberGoal, "\t M\u1EE9c l\u01B0\u01A1ng:").concat(club.players[index].wagePlayer()));
+                    console.log("T\u00EAn CLB: ".concat(club.club, "\tHu\u1EA5n luy\u1EC7n vi\u00EAn:").concat(club.coach.name, "\t T\u00EAn c\u1EA7u th\u1EE7:").concat(club.players[index].name, "\tQu\u1ED1c t\u1ECBch:").concat(club.players[index].nationality, "\t Ng\u00E0y sinh:").concat(club.players[index].age, "\t S\u1ED1 b\u00E0n th\u1EAFng \u0111\u1EA1t \u0111\u01B0\u1EE3c:").concat(club.players[index].numberGoal, "\t M\u1EE9c l\u01B0\u01A1ng:").concat(club.players[index].wagePlayer()));
                 }
             });
         });

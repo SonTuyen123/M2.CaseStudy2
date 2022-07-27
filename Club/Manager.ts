@@ -34,23 +34,37 @@ export class ManagerClub {
     }
 
     deletePlayer(nameclub: string, name: string): void {
+        let flag = -1;
         ManagerClub.clubs.forEach((club, index) => {
             if (club.club === nameclub) {
                 club.players.forEach((player, index) => {
                     if (player.name === name) {
-                        club.players.splice(index, 1);
+                        flag = index;
                     }
                 })
-            } else {
-                console.log('không có câu lạc bộ ');
-            }
+
+            }return flag;
         })
+
+        if (flag == -1) {
+            console.log(`Cầu thủ ${name} không tồn tại trong câu lạc bộ ${nameclub}`);
+        } else {
+            console.log(flag)
+            ManagerClub.clubs.forEach((club, index) => {
+                if (club.club === nameclub) {
+                    club.players.forEach((player, index) => {
+                        club.players.splice(flag, 1);
+                        console.log(`Đã xóa cầu thủ ${name} khỏi câu lạc bộ ${nameclub}`);
+                    })
+                }
+            })
+        }
     }
 
     addNewPlayer(nameClub: string, player: PlayerFootball) {
         ManagerClub.clubs.forEach((club, index) => {
             if (club.club === nameClub) {
-                club.setPlayers(player)
+                club.players.push(player)
             } else {
                 console.log('Không tồn tại CLB này');
             }
@@ -61,7 +75,7 @@ export class ManagerClub {
         ManagerClub.clubs.forEach((club, index) => {
             if (club.club === nameclub) {
                 club.players.forEach((player, index) => {
-                    if (player.name === name) {
+                    if (player.name[index] === name) {
                         club.players[index] = players
                     }
                 })
@@ -73,7 +87,7 @@ export class ManagerClub {
         ManagerClub.clubs.forEach((club, index) => {
             club.players.forEach((player, index) => {
                 if (player.name === name) {
-                    return (`Tên CLB: ${club.club}\tHuấn luyện viên:${club.coach.name}\t Tên cầu thủ:${club.players[index].name}\tQuốc tịch:${club.players[index].nationality}\t Ngày sinh:${club.players[index].age}\t Số bàn thắng đạt được:${club.players[index].numberGoal}\t Mức lương:${club.players[index].wagePlayer()}`)
+                    console.log(`Tên CLB: ${club.club}\tHuấn luyện viên:${club.coach.name}\t Tên cầu thủ:${club.players[index].name}\tQuốc tịch:${club.players[index].nationality}\t Ngày sinh:${club.players[index].age}\t Số bàn thắng đạt được:${club.players[index].numberGoal}\t Mức lương:${club.players[index].wagePlayer()}`)
                 }
             })
         })

@@ -43,6 +43,7 @@ function userPlayer() {
     let email = rl.question('Nhập email: ');
     let password = rl.question('Nhập password: ');
     if (UserManager.checkUser(email, password)) {
+        console.log('----------------------');
         console.log('Đăng nhập thành công !')
         menuPlayers();
     } else {
@@ -129,7 +130,7 @@ function inputCoach() {
 function addNewClub() {
     let player;
     let nameClub = rl.question('Nhập tên Câu lạc bộ: ');
-    if(!ManagersClub.findClub(nameClub)){
+    if (!ManagersClub.findClub(nameClub)) {
         let coach = inputCoach();
         let newClub = new Club(nameClub, coach);
         let numberPlayers = rl.question('Nhập số lượng cầu thủ cần nhập: ');
@@ -138,7 +139,7 @@ function addNewClub() {
             newClub.setPlayers(player)
         }
         ManagersClub.addNewClub(newClub)
-    }else {
+    } else {
         console.log('CLB đã tồn tại !');
     }
 }
@@ -146,14 +147,20 @@ function addNewClub() {
 function ShowClub() {
     console.log('------------------');
     console.log('Hiển thị toàn bộ các câu lạc bộ ');
-    ManagersClub.getAllClub().forEach((club, index) => {
-        console.log(`\nTên CLB: ${club.club} - Coach: ${club.coach.name}`)
-        club.players.forEach((player, index) => {
-            console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\t Số lần thi đấu:${player.turnCompetition}\t Số bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}VND`);
+    if (ManagersClub.getAllClub().length == 0) {
+        console.log('Không có câu lạc bộ nào ! ');
+    } else {
+        ManagersClub.getAllClub().forEach((club, index) => {
+            console.log(`Tên CLB: ${club.club} - Coach: ${club.coach.name}`)
+            club.players.forEach((player, index) => {
+                console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\t Số lần thi đấu:${player.turnCompetition}\t Số bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}VND`);
+            })
         })
-    })
+    }
+
 }
-function SortPlayerByName(){
+
+function SortPlayerByName() {
     ManagersClub.SortNamePlayers();
 }
 
@@ -164,14 +171,24 @@ function deleteClub() {
 
 function addNewPlayerInClub() {
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn them cầu thủ: ');
-    let inputPlayer = inputPlayerFootball();
-    ManagersClub.addNewPlayer(nameClub, inputPlayer);
+    if(!ManagersClub.findClub(nameClub)){
+        console.log(`Không tồn tại câu lạc bộ ${nameClub}`);
+    }else{
+        let inputPlayer = inputPlayerFootball();
+        ManagersClub.addNewPlayer(nameClub, inputPlayer);
+    }
 }
 
 function deletePlayerInClub() {
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn xóa cầu thủ: ');
-    let namePlayer = rl.question('Nhập tên cầu thủ cần xóa: ');
-    ManagersClub.deletePlayer(nameClub, namePlayer);
+    if(!ManagersClub.findClub(nameClub)){
+        console.log(`Câu lạc bộ ${nameClub} không tồn tại ! Mời nhập lại !`);
+        deletePlayerInClub();
+    }else {
+        let namePlayer = rl.question('Nhập tên cầu thủ cần xóa: ');
+        ManagersClub.deletePlayer(nameClub, namePlayer);
+    }
+
 }
 
 function editPllayer() {
@@ -207,13 +224,13 @@ function CallMenuClub() {
             case ENUM.CASE_FIVE:
                 deletePlayerInClub();
                 break;
-            case ENUM.CASE_ZERO:
+            case ENUM.CASE_SIX:
                 break;
             default:
                 console.log('Nhập lại !');
         }
 
-    } while (chon != 0)
+    } while (chon != 6)
 }
 
 function login() {

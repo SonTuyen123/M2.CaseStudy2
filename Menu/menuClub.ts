@@ -5,5 +5,5 @@ export function menuClub() {
     console.log('3.Xóa câu lạc bộ ');
     console.log('4.Thêm cầu thủ vào câu lạc bộ ');
     console.log('5.Xóa cầu thủ khỏi câu lạc bộ ');
-    console.log('0.Thoát')
+    console.log('6.Thoát')
 }
