@@ -29,31 +29,24 @@ var ManagerClub = /** @class */ (function () {
         }
     };
     ManagerClub.prototype.deletePlayer = function (nameclub, name) {
-        var flag = -1;
         ManagerClub.clubs.forEach(function (club, index) {
+            var flag = -1;
             if (club.club === nameclub) {
                 club.players.forEach(function (player, index) {
                     if (player.name === name) {
                         flag = index;
                     }
                 });
-            }
-            return flag;
-        });
-        if (flag == -1) {
-            console.log("C\u1EA7u th\u1EE7 ".concat(name, " kh\u00F4ng t\u1ED3n t\u1EA1i trong c\u00E2u l\u1EA1c b\u1ED9 ").concat(nameclub));
-        }
-        else {
-            console.log(flag);
-            ManagerClub.clubs.forEach(function (club, index) {
-                if (club.club === nameclub) {
-                    club.players.forEach(function (player, index) {
-                        club.players.splice(flag, 1);
-                        console.log("\u0110\u00E3 x\u00F3a c\u1EA7u th\u1EE7 ".concat(name, " kh\u1ECFi c\u00E2u l\u1EA1c b\u1ED9 ").concat(nameclub));
-                    });
+                if (flag == -1) {
+                    console.log("C\u1EA7u th\u1EE7 ".concat(name, " kh\u00F4ng t\u1ED3n t\u1EA1i trong c\u00E2u l\u1EA1c b\u1ED9 ").concat(nameclub));
                 }
-            });
-        }
+                else {
+                    console.log(flag);
+                    club.players.splice(flag, 1);
+                    console.log("\u0110\u00E3 x\u00F3a c\u1EA7u th\u1EE7 ".concat(name, " kh\u1ECFi c\u00E2u l\u1EA1c b\u1ED9 ").concat(nameclub));
+                }
+            }
+        });
     };
     ManagerClub.prototype.addNewPlayer = function (nameClub, player) {
         ManagerClub.clubs.forEach(function (club, index) {

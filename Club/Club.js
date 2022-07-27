@@ -21,12 +21,12 @@ var Club = /** @class */ (function () {
         get: function () {
             return this._coach;
         },
+        set: function (value) {
+            this._coach = value;
+        },
         enumerable: false,
         configurable: true
     });
-    Club.prototype.setcoach = function (value) {
-        this._coach = value;
-    };
     Club.prototype.setPlayers = function (player) {
         this._players.push(player);
     };

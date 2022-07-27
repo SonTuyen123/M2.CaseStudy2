@@ -1,6 +1,5 @@
 import {Club} from "./Club";
 import {PlayerFootball} from "./PlayerFootball";
-import {Coach} from "./Coach";
 
 export class ManagerClub {
     private static clubs: Club[] = [];
@@ -34,31 +33,24 @@ export class ManagerClub {
     }
 
     deletePlayer(nameclub: string, name: string): void {
-        let flag = -1;
+
         ManagerClub.clubs.forEach((club, index) => {
+            let flag = -1;
             if (club.club === nameclub) {
                 club.players.forEach((player, index) => {
                     if (player.name === name) {
                         flag = index;
                     }
                 })
-
-            }return flag;
-        })
-
-        if (flag == -1) {
-            console.log(`Cầu thủ ${name} không tồn tại trong câu lạc bộ ${nameclub}`);
-        } else {
-            console.log(flag)
-            ManagerClub.clubs.forEach((club, index) => {
-                if (club.club === nameclub) {
-                    club.players.forEach((player, index) => {
-                        club.players.splice(flag, 1);
-                        console.log(`Đã xóa cầu thủ ${name} khỏi câu lạc bộ ${nameclub}`);
-                    })
+                if (flag == -1) {
+                    console.log(`Cầu thủ ${name} không tồn tại trong câu lạc bộ ${nameclub}`);
+                } else {
+                    console.log(flag)
+                    club.players.splice(flag, 1);
+                    console.log(`Đã xóa cầu thủ ${name} khỏi câu lạc bộ ${nameclub}`);
                 }
-            })
-        }
+            }
+        })
     }
 
     addNewPlayer(nameClub: string, player: PlayerFootball) {

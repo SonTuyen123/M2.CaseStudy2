@@ -23,7 +23,7 @@ export class Club {
         return this._coach;
     }
 
-    setcoach(value: Coach) {
+    set coach(value: Coach) {
         this._coach = value;
     }
 
