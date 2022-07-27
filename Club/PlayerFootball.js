@@ -68,7 +68,7 @@ var PlayerFootball = /** @class */ (function (_super) {
         configurable: true
     });
     PlayerFootball.prototype.wagePlayer = function () {
-        var value = this.wage + _super.prototype.allowance.call(this) + this.numberGoal * 1000000;
+        return this.wage + _super.prototype.allowance.call(this) + this.numberGoal * 1000000;
     };
     return PlayerFootball;
 }(Person_1.Person));

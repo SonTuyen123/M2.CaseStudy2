@@ -20,24 +20,18 @@ var choice;
 function inputEmail() {
     var regexpNumber = new regEmail_1.regexEmail();
     var email = rl.question('Nhập địa chỉ email: ');
-    if (regexpNumber.Validate_Email(email)) {
-        return email;
-    }
-    else {
+    while (!regexpNumber.Validate_Email(email)) {
         console.log('Email phải đúng kiểu @gmail.com mời nhập lại ');
-        inputEmail();
+        email = rl.question('Nhập địa chỉ email: ');
     }
     return email;
 }
 function inputPassword() {
     var passw = new regPassword_1.regexPassword();
     var password = rl.question('Nhập password: ');
-    if (passw.Validate_Pasword(password)) {
-        return password;
-    }
-    else {
+    while (!passw.Validate_Pasword(password)) {
         console.log('Password phải từ 6 đến 10 ký tự trong đó có ít nhất một chữ số , một chữ hoa và một chữ thường.Mời nhập lại Password ');
-        inputPassword();
+        password = rl.question('Nhập password: ');
     }
     return password;
 }
@@ -102,7 +96,7 @@ function Register() {
 function inputPlayerFootball() {
     console.log('------------------');
     console.log('Nhập thông tin PlayerFootball');
-    var name = rl.question('Nhập tên: ');
+    var name = rl.question('Nhập tên cầu thủ: ');
     var nationality = rl.question('Nhập quốc tịch: ');
     var age = rl.question('Nhập tuổi: ');
     var birthDay = rl.question('Nhập ngày tháng năm sinh: ');
@@ -116,7 +110,7 @@ function inputPlayerFootball() {
 function inputCoach() {
     console.log('------------------');
     console.log('Nhập thông tin Coach');
-    var name = rl.question('Nhập tên: ');
+    var name = rl.question('Nhập tên Coach: ');
     var nationality = rl.question('Nhập quốc tịch: ');
     var age = rl.question('Nhập tuổi: ');
     var birthDay = rl.question('Nhập ngày tháng năm sinh: ');
@@ -129,14 +123,19 @@ function inputCoach() {
 function addNewClub() {
     var player;
     var nameClub = rl.question('Nhập tên Câu lạc bộ: ');
-    var coach = inputCoach();
-    var newClub = new Club_1.Club(nameClub, coach);
-    var numberPlayers = rl.question('Nhập số lượng cầu thủ cần nhập: ');
-    for (var i = 0; i < +numberPlayers.length; i++) {
-        player = inputPlayerFootball();
-        newClub.setPlayers(player);
+    if (!ManagersClub.findClub(nameClub)) {
+        var coach = inputCoach();
+        var newClub = new Club_1.Club(nameClub, coach);
+        var numberPlayers = rl.question('Nhập số lượng cầu thủ cần nhập: ');
+        for (var i = 0; i < +numberPlayers; i++) {
+            player = inputPlayerFootball();
+            newClub.setPlayers(player);
+        }
+        ManagersClub.addNewClub(newClub);
     }
-    ManagersClub.addNewClub(newClub);
+    else {
+        console.log('CLB đã tồn tại !');
+    }
 }
 function ShowClub() {
     console.log('------------------');
@@ -144,9 +143,12 @@ function ShowClub() {
     ManagersClub.getAllClub().forEach(function (club, index) {
         console.log("\nT\u00EAn CLB: ".concat(club.club, " - Coach: ").concat(club.coach.name));
         club.players.forEach(function (player, index) {
-            console.log("T\u00EAn: ".concat(player.name, "\tTu\u1ED5i: ").concat(player.age, "\tNg\u00E0y sinh: ").concat(player.birth, "\tN\u0103m gia nh\u1EADp:").concat(player.yearOfJon, "\tV\u1ECB tr\u00ED thi \u0111\u1EA5u:").concat(player.location, "\tS\u1ED1 l\u1EA7n thi \u0111\u1EA5u:").concat(player.turnCompetition, "\tS\u1ED1 b\u00E0n th\u1EAFng:").concat(player.numberGoal, "\tL\u01B0\u01A1ng:").concat(player.wagePlayer()));
+            console.log("T\u00EAn: ".concat(player.name, "\tTu\u1ED5i: ").concat(player.age, "\tNg\u00E0y sinh: ").concat(player.birth, "\tN\u0103m gia nh\u1EADp:").concat(player.yearOfJon, "\tV\u1ECB tr\u00ED thi \u0111\u1EA5u:").concat(player.location, "\t S\u1ED1 l\u1EA7n thi \u0111\u1EA5u:").concat(player.turnCompetition, "\t S\u1ED1 b\u00E0n th\u1EAFng:").concat(player.numberGoal, "\tL\u01B0\u01A1ng:").concat(player.wagePlayer()));
         });
     });
+}
+function SortPlayerByName() {
+    ManagersClub.SortNamePlayers();
 }
 function deleteClub() {
     var nameClub = rl.question('Nhập tên câu lạc bộ muốn xóa: ');
@@ -242,6 +244,7 @@ function menuPlayers() {
                 findPlayersInClub();
                 break;
             case ENUM_1.ENUM.CASE_SEVEN:
+                SortPlayerByName();
                 break;
             case ENUM_1.ENUM.CASE_NIGHT:
                 break;

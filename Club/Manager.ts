@@ -17,6 +17,14 @@ export class ManagerClub {
         ManagerClub.clubs[index] = club;
     }
 
+    findClub(name: string): boolean {
+        let flag: boolean = false;
+        ManagerClub.clubs.forEach((club, index) => {
+            if (club.club === name) return flag = true;
+        });
+        return flag;
+    }
+
     deleteClub(name: string): void {
         for (let i = 0; i < ManagerClub.clubs.length; i++) {
             if (ManagerClub.clubs[i].club === name) {
@@ -33,15 +41,17 @@ export class ManagerClub {
                         club.players.splice(index, 1);
                     }
                 })
+            } else {
+                console.log('không có câu lạc bộ ');
             }
         })
     }
 
-    addNewPlayer(nameClub: string,player: PlayerFootball) {
+    addNewPlayer(nameClub: string, player: PlayerFootball) {
         ManagerClub.clubs.forEach((club, index) => {
             if (club.club === nameClub) {
                 club.setPlayers(player)
-            }else {
+            } else {
                 console.log('Không tồn tại CLB này');
             }
         })
@@ -58,7 +68,8 @@ export class ManagerClub {
             }
         })
     }
-    findPlayersinClub(name: string){
+
+    findPlayersinClub(name: string) {
         ManagerClub.clubs.forEach((club, index) => {
             club.players.forEach((player, index) => {
                 if (player.name === name) {
@@ -67,6 +78,20 @@ export class ManagerClub {
             })
         })
     }
-    SortNamePlayers(){
+
+    SortNamePlayers() {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.sort(function (a, b) {
+                if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                return 0;
+            })
+        })
+        ManagerClub.clubs.forEach((club, index) => {
+            console.log(`\n Tên CLB:${club.club}- Coach: ${club.coach.name}`)
+            club.players.forEach((player, index) => {
+                console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\tSố lần thi đấu:${player.turnCompetition}\tSố bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}`);
+            })
+        })
     }
 }

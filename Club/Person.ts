@@ -53,7 +53,7 @@ export class Person {
     }
     allowance():number{
         let str= new Date();
-        let year= str.getFullYear();
+        let year = str.getFullYear();
         return year - this.yearOfJon;
     }
 }

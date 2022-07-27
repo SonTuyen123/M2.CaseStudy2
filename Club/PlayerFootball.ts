@@ -53,8 +53,8 @@ export class PlayerFootball extends Person {
     set wage(value: number) {
         this._wage = value;
     }
-    wagePlayer() {
-        let value = this.wage + super.allowance() + this.numberGoal * 1000000;
-    }
 
+    wagePlayer() {
+        return this.wage + super.allowance() + this.numberGoal * 1000000;
+    }
 }

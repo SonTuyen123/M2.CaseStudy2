@@ -22,23 +22,19 @@ let choice;
 function inputEmail() {
     let regexpNumber = new regexEmail();
     let email = rl.question('Nhập địa chỉ email: ');
-    if (regexpNumber.Validate_Email(email)) {
-        return email;
-    } else {
+    while (!regexpNumber.Validate_Email(email)) {
         console.log('Email phải đúng kiểu @gmail.com mời nhập lại ');
-        inputEmail();
+        email = rl.question('Nhập địa chỉ email: ');
     }
     return email;
 }
 
 function inputPassword() {
-    let passw = new regexPassword()
+    let passw = new regexPassword();
     let password = rl.question('Nhập password: ');
-    if (passw.Validate_Pasword(password)) {
-        return password;
-    } else {
+    while (!passw.Validate_Pasword(password)) {
         console.log('Password phải từ 6 đến 10 ký tự trong đó có ít nhất một chữ số , một chữ hoa và một chữ thường.Mời nhập lại Password ');
-        inputPassword();
+        password = rl.question('Nhập password: ');
     }
     return password;
 }
@@ -63,7 +59,6 @@ function clubManager() {
 function checkEmailAdmin() {
     let regexpNumber = new regexEmail();
     let email = rl.question('Nhập địa chỉ email admin: ');
-
     if (regexpNumber.Validate_Email(email)) {
         if (email === 'admin@gmail.com') {
             checkPasswordAdmin();
@@ -134,14 +129,18 @@ function inputCoach() {
 function addNewClub() {
     let player;
     let nameClub = rl.question('Nhập tên Câu lạc bộ: ');
-    let coach = inputCoach();
-    let newClub = new Club(nameClub, coach);
-    let numberPlayers = rl.question('Nhập số lượng cầu thủ cần nhập: ');
-    for (let i = 0; i < +numberPlayers.length; i++) {
-        player = inputPlayerFootball()
-        newClub.setPlayers(player)
+    if(!ManagersClub.findClub(nameClub)){
+        let coach = inputCoach();
+        let newClub = new Club(nameClub, coach);
+        let numberPlayers = rl.question('Nhập số lượng cầu thủ cần nhập: ');
+        for (let i = 0; i < +numberPlayers; i++) {
+            player = inputPlayerFootball()
+            newClub.setPlayers(player)
+        }
+        ManagersClub.addNewClub(newClub)
+    }else {
+        console.log('CLB đã tồn tại !');
     }
-    ManagersClub.addNewClub(newClub)
 }
 
 function ShowClub() {
@@ -150,9 +149,12 @@ function ShowClub() {
     ManagersClub.getAllClub().forEach((club, index) => {
         console.log(`\nTên CLB: ${club.club} - Coach: ${club.coach.name}`)
         club.players.forEach((player, index) => {
-            console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\tSố lần thi đấu:${player.turnCompetition}\tSố bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}`);
+            console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\t Số lần thi đấu:${player.turnCompetition}\t Số bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}VND`);
         })
     })
+}
+function SortPlayerByName(){
+    ManagersClub.SortNamePlayers();
 }
 
 function deleteClub() {
@@ -231,7 +233,6 @@ function login() {
                 console.log('Bạn đã nhập sai, vui lòng nhập lại !');
         }
     } while (choice != 3);
-
 }
 
 function menuPlayers() {
@@ -258,7 +259,7 @@ function menuPlayers() {
                 findPlayersInClub();
                 break;
             case ENUM.CASE_SEVEN:
-
+                SortPlayerByName();
                 break;
             case ENUM.CASE_NIGHT:
                 break;
@@ -266,7 +267,6 @@ function menuPlayers() {
                 console.log('Bạn đã nhập sai !');
         }
     } while (choices != 8);
-
 }
 
 do {
