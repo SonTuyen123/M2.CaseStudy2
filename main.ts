@@ -170,9 +170,10 @@ function deleteClub() {
 }
 
 function addNewPlayerInClub() {
-    let nameClub = rl.question('Nhập tên câu lạc bộ muốn them cầu thủ: ');
+    let nameClub = rl.question('Nhập tên câu lạc bộ muốn thêm cầu thủ: ');
     if(!ManagersClub.findClub(nameClub)){
         console.log(`Không tồn tại câu lạc bộ ${nameClub}`);
+        addNewPlayerInClub();
     }else{
         let inputPlayer = inputPlayerFootball();
         ManagersClub.addNewPlayer(nameClub, inputPlayer);
