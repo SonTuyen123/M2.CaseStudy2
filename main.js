@@ -161,9 +161,10 @@ function deleteClub() {
     ManagersClub.deleteClub(nameClub);
 }
 function addNewPlayerInClub() {
-    var nameClub = rl.question('Nhập tên câu lạc bộ muốn them cầu thủ: ');
+    var nameClub = rl.question('Nhập tên câu lạc bộ muốn thêm cầu thủ: ');
     if (!ManagersClub.findClub(nameClub)) {
         console.log("Kh\u00F4ng t\u1ED3n t\u1EA1i c\u00E2u l\u1EA1c b\u1ED9 ".concat(nameClub));
+        addNewPlayerInClub();
     }
     else {
         var inputPlayer = inputPlayerFootball();

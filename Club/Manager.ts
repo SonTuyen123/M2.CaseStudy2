@@ -33,24 +33,17 @@ export class ManagerClub {
     }
 
     deletePlayer(nameclub: string, name: string): void {
-
-        ManagerClub.clubs.forEach((club, index) => {
-            let flag = -1;
-            if (club.club === nameclub) {
-                club.players.forEach((player, index) => {
-                    if (player.name === name) {
-                        flag = index;
-                    }
-                })
-                if (flag == -1) {
-                    console.log(`Cầu thủ ${name} không tồn tại trong câu lạc bộ ${nameclub}`);
-                } else {
-                    console.log(flag)
-                    club.players.splice(flag, 1);
-                    console.log(`Đã xóa cầu thủ ${name} khỏi câu lạc bộ ${nameclub}`);
+        for (let i = 0; i < ManagerClub.clubs.length; i++) {
+            ManagerClub.clubs.forEach((club, index) => {
+                if (club.club === nameclub) {
+                    club.players.forEach((player, index) => {
+                        if (player.name === name) {
+                            club.players.splice(index, 1);
+                        }
+                    })
                 }
-            }
-        })
+            })
+        }
     }
 
     addNewPlayer(nameClub: string, player: PlayerFootball) {
