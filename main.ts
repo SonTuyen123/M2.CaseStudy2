@@ -5,7 +5,10 @@ import {PlayerFootball} from "./Club/PlayerFootball";
 import {Coach} from "./Club/Coach";
 import {Club} from "./Club/Club";
 import {ManagerClub} from "./Club/Manager";
-import {ENUM} from "./Enum/ENUM";
+import {EMUN_MENU} from "./Enum/EMUN_MENU";
+import {ENUM_MENU_PLAYER} from "./Enum/ENUM_MENU_PLAYER";
+import {EMUN_MENU_LOGIN} from "./Enum/EMUN_MENU_LOGIN";
+import {EMUN_MENU_CLUB} from "./Enum/EMUN_MENU_CLUB";
 import {menu} from "./Menu/menu";
 import {menuLogin} from "./Menu/menuLogin";
 import {menuPlayer} from "./Menu/menuPlayer";
@@ -209,22 +212,22 @@ function CallMenuClub() {
         menuClub();
         chon = +rl.question('Nhập lựa chọn: ');
         switch (chon) {
-            case ENUM.CASE_ONE:
+            case EMUN_MENU_CLUB.CASE_ONE:
                 ShowClub();
                 break;
-            case ENUM.CASE_TWO:
+            case EMUN_MENU_CLUB.CASE_TWO:
                 addNewClub();
                 break;
-            case ENUM.CASE_THREE:
+            case EMUN_MENU_CLUB.CASE_THREE:
                 deleteClub();
                 break;
-            case ENUM.CASE_FOUR:
+            case EMUN_MENU_CLUB.CASE_FOUR:
                 addNewPlayerInClub();
                 break;
-            case ENUM.CASE_FIVE:
+            case EMUN_MENU_CLUB.CASE_FIVE:
                 deletePlayerInClub();
                 break;
-            case ENUM.CASE_SIX:
+            case EMUN_MENU_CLUB.CASE_SIX:
                 break;
             default:
                 console.log('Nhập lại !');
@@ -238,13 +241,13 @@ function login() {
         menuLogin();
         choice = +rl.question('Nhập lựa chọn: ');
         switch (choice) {
-            case ENUM.CASE_ONE:
+            case EMUN_MENU_LOGIN.CASE_ONE:
                 clubManager();
                 break;
-            case ENUM.CASE_TWO:
+            case EMUN_MENU_LOGIN.CASE_TWO:
                 userPlayer();
                 break;
-            case ENUM.CASE_THREE:
+            case EMUN_MENU_LOGIN.CASE_THREE:
                 break;
             default:
                 console.log('Bạn đã nhập sai, vui lòng nhập lại !');
@@ -257,28 +260,28 @@ function menuPlayers() {
         menuPlayer()
         choices = +rl.question('Nhập lựa chọn: ');
         switch (choices) {
-            case ENUM.CASE_ONE:
+            case ENUM_MENU_PLAYER.CASE_ONE:
                 ShowClub();
                 break;
-            case ENUM.CASE_TWO:
+            case ENUM_MENU_PLAYER.CASE_TWO:
                 addNewClub();
                 break;
-            case ENUM.CASE_THREE:
+            case ENUM_MENU_PLAYER.CASE_THREE:
                 addNewPlayerInClub();
                 break;
-            case ENUM.CASE_FOUR:
+            case ENUM_MENU_PLAYER.CASE_FOUR:
                 deletePlayerInClub();
                 break;
-            case ENUM.CASE_FIVE:
+            case ENUM_MENU_PLAYER.CASE_FIVE:
                 editPllayer();
                 break;
-            case ENUM.CASE_SIX:
+            case ENUM_MENU_PLAYER.CASE_SIX:
                 findPlayersInClub();
                 break;
-            case ENUM.CASE_SEVEN:
+            case ENUM_MENU_PLAYER.CASE_SEVEN:
                 SortPlayerByName();
                 break;
-            case ENUM.CASE_NIGHT:
+            case ENUM_MENU_PLAYER.CASE_NIGHT:
                 break;
             default:
                 console.log('Bạn đã nhập sai !');
@@ -290,13 +293,13 @@ do {
     menu();
     choice = +rl.question('Nhập lựa chọn: ');
     switch (choice) {
-        case ENUM.CASE_ONE:
+        case EMUN_MENU.CASE_ONE:
             login();
             break;
-        case ENUM.CASE_TWO:
+        case EMUN_MENU.CASE_TWO:
             Register();
             break;
-        case ENUM.CASE_ZERO:
+        case EMUN_MENU.CASE_ZERO:
             break;
         default:
             console.log('Mời bạn nhập lại ');

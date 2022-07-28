@@ -30,7 +30,10 @@ const PlayerFootball_1 = require("./Club/PlayerFootball");
 const Coach_1 = require("./Club/Coach");
 const Club_1 = require("./Club/Club");
 const Manager_1 = require("./Club/Manager");
-const ENUM_1 = require("./Enum/ENUM");
+const EMUN_MENU_1 = require("./Enum/EMUN_MENU");
+const ENUM_MENU_PLAYER_1 = require("./Enum/ENUM_MENU_PLAYER");
+const EMUN_MENU_LOGIN_1 = require("./Enum/EMUN_MENU_LOGIN");
+const EMUN_MENU_CLUB_1 = require("./Enum/EMUN_MENU_CLUB");
 const menu_1 = require("./Menu/menu");
 const menuLogin_1 = require("./Menu/menuLogin");
 const menuPlayer_1 = require("./Menu/menuPlayer");
@@ -221,22 +224,22 @@ function CallMenuClub() {
         (0, menuClub_1.menuClub)();
         chon = +rl.question('Nhập lựa chọn: ');
         switch (chon) {
-            case ENUM_1.ENUM.CASE_ONE:
+            case EMUN_MENU_CLUB_1.EMUN_MENU_CLUB.CASE_ONE:
                 ShowClub();
                 break;
-            case ENUM_1.ENUM.CASE_TWO:
+            case EMUN_MENU_CLUB_1.EMUN_MENU_CLUB.CASE_TWO:
                 addNewClub();
                 break;
-            case ENUM_1.ENUM.CASE_THREE:
+            case EMUN_MENU_CLUB_1.EMUN_MENU_CLUB.CASE_THREE:
                 deleteClub();
                 break;
-            case ENUM_1.ENUM.CASE_FOUR:
+            case EMUN_MENU_CLUB_1.EMUN_MENU_CLUB.CASE_FOUR:
                 addNewPlayerInClub();
                 break;
-            case ENUM_1.ENUM.CASE_FIVE:
+            case EMUN_MENU_CLUB_1.EMUN_MENU_CLUB.CASE_FIVE:
                 deletePlayerInClub();
                 break;
-            case ENUM_1.ENUM.CASE_SIX:
+            case EMUN_MENU_CLUB_1.EMUN_MENU_CLUB.CASE_SIX:
                 break;
             default:
                 console.log('Nhập lại !');
@@ -248,13 +251,13 @@ function login() {
         (0, menuLogin_1.menuLogin)();
         choice = +rl.question('Nhập lựa chọn: ');
         switch (choice) {
-            case ENUM_1.ENUM.CASE_ONE:
+            case EMUN_MENU_LOGIN_1.EMUN_MENU_LOGIN.CASE_ONE:
                 clubManager();
                 break;
-            case ENUM_1.ENUM.CASE_TWO:
+            case EMUN_MENU_LOGIN_1.EMUN_MENU_LOGIN.CASE_TWO:
                 userPlayer();
                 break;
-            case ENUM_1.ENUM.CASE_THREE:
+            case EMUN_MENU_LOGIN_1.EMUN_MENU_LOGIN.CASE_THREE:
                 break;
             default:
                 console.log('Bạn đã nhập sai, vui lòng nhập lại !');
@@ -266,28 +269,28 @@ function menuPlayers() {
         (0, menuPlayer_1.menuPlayer)();
         choices = +rl.question('Nhập lựa chọn: ');
         switch (choices) {
-            case ENUM_1.ENUM.CASE_ONE:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_ONE:
                 ShowClub();
                 break;
-            case ENUM_1.ENUM.CASE_TWO:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_TWO:
                 addNewClub();
                 break;
-            case ENUM_1.ENUM.CASE_THREE:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_THREE:
                 addNewPlayerInClub();
                 break;
-            case ENUM_1.ENUM.CASE_FOUR:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_FOUR:
                 deletePlayerInClub();
                 break;
-            case ENUM_1.ENUM.CASE_FIVE:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_FIVE:
                 editPllayer();
                 break;
-            case ENUM_1.ENUM.CASE_SIX:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_SIX:
                 findPlayersInClub();
                 break;
-            case ENUM_1.ENUM.CASE_SEVEN:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_SEVEN:
                 SortPlayerByName();
                 break;
-            case ENUM_1.ENUM.CASE_NIGHT:
+            case ENUM_MENU_PLAYER_1.ENUM_MENU_PLAYER.CASE_NIGHT:
                 break;
             default:
                 console.log('Bạn đã nhập sai !');
@@ -298,13 +301,13 @@ do {
     (0, menu_1.menu)();
     choice = +rl.question('Nhập lựa chọn: ');
     switch (choice) {
-        case ENUM_1.ENUM.CASE_ONE:
+        case EMUN_MENU_1.EMUN_MENU.CASE_ONE:
             login();
             break;
-        case ENUM_1.ENUM.CASE_TWO:
+        case EMUN_MENU_1.EMUN_MENU.CASE_TWO:
             Register();
             break;
-        case ENUM_1.ENUM.CASE_ZERO:
+        case EMUN_MENU_1.EMUN_MENU.CASE_ZERO:
             break;
         default:
             console.log('Mời bạn nhập lại ');

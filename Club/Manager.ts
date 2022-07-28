@@ -1,7 +1,7 @@
 import {Club} from "./Club";
 import {PlayerFootball} from "./PlayerFootball";
 
-export class ManagerClub {
+export class ManagerClub  {
     private static clubs: Club[] = [];
 
     getAllClub(): Club[] {

@@ -1,6 +1,6 @@
 import {User} from "./User";
 
-export class userManager {
+export class userManager{
     private static users: User[] = [];
 
     getAllUsers(): User[] {
@@ -13,7 +13,7 @@ export class userManager {
         let flag = false;
         for (let i = 0; i < userManager.users.length; i++) {
             if (userManager.users[i].email === email && userManager.users[i].password === password){
-                return true;
+                return flag = true;
             }
         }
         return flag

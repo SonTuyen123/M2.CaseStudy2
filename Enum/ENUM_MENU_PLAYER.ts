@@ -1,4 +1,4 @@
-export enum ENUM {
+export enum ENUM_MENU_PLAYER {
     CASE_ZERO = 0,
     CASE_ONE,
     CASE_TWO,
