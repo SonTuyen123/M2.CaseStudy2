@@ -157,7 +157,6 @@ function ShowClub() {
             })
         })
     }
-
 }
 
 function SortPlayerByName() {
@@ -171,10 +170,10 @@ function deleteClub() {
 
 function addNewPlayerInClub() {
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn thêm cầu thủ: ');
-    if(!ManagersClub.findClub(nameClub)){
+    if (!ManagersClub.findClub(nameClub)) {
         console.log(`Không tồn tại câu lạc bộ ${nameClub}`);
         addNewPlayerInClub();
-    }else{
+    } else {
         let inputPlayer = inputPlayerFootball();
         ManagersClub.addNewPlayer(nameClub, inputPlayer);
     }
@@ -182,10 +181,10 @@ function addNewPlayerInClub() {
 
 function deletePlayerInClub() {
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn xóa cầu thủ: ');
-    if(!ManagersClub.findClub(nameClub)){
+    if (!ManagersClub.findClub(nameClub)) {
         console.log(`Câu lạc bộ ${nameClub} không tồn tại ! Mời nhập lại !`);
         deletePlayerInClub();
-    }else {
+    } else {
         let namePlayer = rl.question('Nhập tên cầu thủ cần xóa: ');
         ManagersClub.deletePlayer(nameClub, namePlayer);
     }
@@ -296,9 +295,6 @@ do {
             break;
         case ENUM.CASE_TWO:
             Register();
-            break;
-        case ENUM.CASE_THREE:
-            console.table(Array);
             break;
         case ENUM.CASE_ZERO:
             break;
