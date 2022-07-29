@@ -45,7 +45,33 @@ const Input_Coach_1 = require("./Check_Input/Input_Coach");
 const Input_NameClub_1 = require("./Check_Input/Input_NameClub");
 let UserManager = new ManagerUser_1.userManager();
 let ManagersClub = new Manager_1.ManagerClub();
-let choice;
+let PlayerFootball1 = new PlayerFootball_1.PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200000);
+let PlayerFootball2 = new PlayerFootball_1.PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300000);
+let PlayerFootball3 = new PlayerFootball_1.PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100000);
+let PlayerFootball4 = new PlayerFootball_1.PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90000000);
+let PlayerFootball5 = new PlayerFootball_1.PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80000000);
+let PlayerFootball6 = new PlayerFootball_1.PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40000000);
+let PlayerFootball7 = new PlayerFootball_1.PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10);
+let PlayerFootball8 = new PlayerFootball_1.PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800);
+let PlayerFootball9 = new PlayerFootball_1.PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 4000);
+let Coah1 = new Coach_1.Coach('CAO VĂN TUYEN', 'LÀO', 19, '09/10/2008', 2010, 3, 100, 90);
+let Coah2 = new Coach_1.Coach('CAO VĂN A', 'THÁI', 19, '09/10/2010', 2011, 1, 99, 100);
+let Coah3 = new Coach_1.Coach('CAO VĂN B', 'USA', 19, '09/10/2002', 2012, 5, 10, 50);
+let club1 = new Club_1.Club('MU', Coah1);
+club1.setPlayers(PlayerFootball1);
+club1.setPlayers(PlayerFootball2);
+club1.setPlayers(PlayerFootball3);
+ManagersClub.addNewClub(club1);
+let club2 = new Club_1.Club('MC', Coah2);
+club2.setPlayers(PlayerFootball4);
+club2.setPlayers(PlayerFootball5);
+club2.setPlayers(PlayerFootball6);
+ManagersClub.addNewClub(club2);
+let club3 = new Club_1.Club('VIỆT NAM', Coah3);
+club3.setPlayers(PlayerFootball7);
+club3.setPlayers(PlayerFootball8);
+club3.setPlayers(PlayerFootball9);
+ManagersClub.addNewClub(club3);
 function inputEmail() {
     let regexpNumber = new regEmail_1.regexEmail();
     let email = rl.question('Nhập địa chỉ email: ');
@@ -250,6 +276,7 @@ function CallMenuClub() {
     } while (chon != 6);
 }
 function login() {
+    let choice;
     do {
         (0, menuLogin_1.menuLogin)();
         choice = +rl.question('Nhập lựa chọn: ');
@@ -268,6 +295,7 @@ function login() {
     } while (choice != 3);
 }
 function menuPlayers() {
+    let choices;
     do {
         (0, menuPlayer_1.menuPlayer)();
         choices = +rl.question('Nhập lựa chọn: ');
@@ -300,10 +328,11 @@ function menuPlayers() {
         }
     } while (choices != 8);
 }
+let chon;
 do {
     (0, menu_1.menu)();
-    choice = +rl.question('Nhập lựa chọn: ');
-    switch (choice) {
+    chon = +rl.question('Nhập lựa chọn: ');
+    switch (chon) {
         case EMUN_MENU_1.EMUN_MENU.CASE_ONE:
             login();
             break;
@@ -315,5 +344,4 @@ do {
         default:
             console.log('Mời bạn nhập lại ');
     }
-} while (choice != 0);
-let choices;
+} while (chon != 0);

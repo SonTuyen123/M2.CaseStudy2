@@ -85,7 +85,7 @@ export function inputTurnCompetition(){
 }
 export function inputNumberGoals(){
     let RegNumber =new regNumber();
-    let numberGoals = rl.question('Nhập số lần thi đấu: ');
+    let numberGoals = rl.question('Nhập số bàn thắng đã có: ');
     if(RegNumber.Validate_Number(numberGoals)){
         return numberGoals;
     }else {

@@ -129,7 +129,7 @@ function inputTurnCompetition() {
 exports.inputTurnCompetition = inputTurnCompetition;
 function inputNumberGoals() {
     let RegNumber = new regNumber_1.regNumber();
-    let numberGoals = rl.question('Nhập số lần thi đấu: ');
+    let numberGoals = rl.question('Nhập số bàn thắng đã có: ');
     if (RegNumber.Validate_Number(numberGoals)) {
         return numberGoals;
     }

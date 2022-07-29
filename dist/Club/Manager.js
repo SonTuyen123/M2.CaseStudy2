@@ -63,7 +63,7 @@ class ManagerClub {
     findPlayersinClub(name) {
         ManagerClub.clubs.forEach((club, index) => {
             club.players.forEach((player, index) => {
-                if (player.name === name) {
+                if (player.name.toLowerCase().includes(name.toLowerCase())) {
                     console.log(`Tên CLB: ${club.club}\tHuấn luyện viên:${club.coach.name}\t Tên cầu thủ:${club.players[index].name}\tQuốc tịch:${club.players[index].nationality}\t Ngày sinh:${club.players[index].age}\t Số bàn thắng đạt được:${club.players[index].numberGoal}\t Mức lương:${club.players[index].wagePlayer()}`);
                 }
             });
