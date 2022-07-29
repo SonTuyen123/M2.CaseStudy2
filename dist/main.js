@@ -40,20 +40,21 @@ const menuPlayer_1 = require("./Menu/menuPlayer");
 const menuClub_1 = require("./Menu/menuClub");
 const regEmail_1 = require("./Regex/regEmail");
 const regPassword_1 = require("./Regex/regPassword");
+const IDplayer_1 = require("./IDPlayer/IDplayer");
 const Input_Player_1 = require("./Check_Input/Input_Player");
 const Input_Coach_1 = require("./Check_Input/Input_Coach");
 const Input_NameClub_1 = require("./Check_Input/Input_NameClub");
 let UserManager = new ManagerUser_1.userManager();
 let ManagersClub = new Manager_1.ManagerClub();
-let PlayerFootball1 = new PlayerFootball_1.PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200000);
-let PlayerFootball2 = new PlayerFootball_1.PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300000);
-let PlayerFootball3 = new PlayerFootball_1.PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100000);
-let PlayerFootball4 = new PlayerFootball_1.PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90000000);
-let PlayerFootball5 = new PlayerFootball_1.PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80000000);
-let PlayerFootball6 = new PlayerFootball_1.PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40000000);
-let PlayerFootball7 = new PlayerFootball_1.PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10);
-let PlayerFootball8 = new PlayerFootball_1.PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800);
-let PlayerFootball9 = new PlayerFootball_1.PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 4000);
+let PlayerFootball1 = new PlayerFootball_1.PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200000, (0, IDplayer_1.IDplayer)());
+let PlayerFootball2 = new PlayerFootball_1.PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300000, (0, IDplayer_1.IDplayer)());
+let PlayerFootball3 = new PlayerFootball_1.PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100000, (0, IDplayer_1.IDplayer)());
+let PlayerFootball4 = new PlayerFootball_1.PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90000000, (0, IDplayer_1.IDplayer)());
+let PlayerFootball5 = new PlayerFootball_1.PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80000000, (0, IDplayer_1.IDplayer)());
+let PlayerFootball6 = new PlayerFootball_1.PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40000000, (0, IDplayer_1.IDplayer)());
+let PlayerFootball7 = new PlayerFootball_1.PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10, (0, IDplayer_1.IDplayer)());
+let PlayerFootball8 = new PlayerFootball_1.PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800, (0, IDplayer_1.IDplayer)());
+let PlayerFootball9 = new PlayerFootball_1.PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 4000, (0, IDplayer_1.IDplayer)());
 let Coah1 = new Coach_1.Coach('CAO VĂN TUYEN', 'LÀO', 19, '09/10/2008', 2010, 3, 100, 90);
 let Coah2 = new Coach_1.Coach('CAO VĂN A', 'THÁI', 19, '09/10/2010', 2011, 1, 99, 100);
 let Coah3 = new Coach_1.Coach('CAO VĂN B', 'USA', 19, '09/10/2002', 2012, 5, 10, 50);
@@ -161,7 +162,7 @@ function inputPlayerFootball() {
     let turnCompetition = (0, Input_Player_1.inputTurnCompetition)();
     let numberGoals = +(0, Input_Player_1.inputNumberGoals)();
     let wages = +(0, Input_Player_1.inputWages)();
-    return new PlayerFootball_1.PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages);
+    return new PlayerFootball_1.PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages, (0, IDplayer_1.IDplayer)());
 }
 function inputCoach() {
     console.log('------------------');
@@ -203,7 +204,16 @@ function ShowClub() {
         ManagersClub.getAllClub().forEach((club, index) => {
             console.log(`Tên CLB: ${club.club} - Coach: ${club.coach.name}`);
             club.players.forEach((player, index) => {
-                console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\t Số lần thi đấu:${player.turnCompetition}\t Số bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}VND`);
+                console.log(`
+                - Tên:${player.name}
+                - Tuổi:${player.age}
+                - Ngày sinh: ${player.birth}
+                - Năm gia nhập:${player.yearOfJon}
+                - Vị trí thi đấu:${player.location}
+                - Số lần thi đấu:${player.turnCompetition}
+                - Số bàn thắng:${player.numberGoal}
+                - Lương:${player.wagePlayer()}VND
+                - ID:${player.randomId}`);
             });
         });
     }

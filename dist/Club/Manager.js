@@ -64,7 +64,14 @@ class ManagerClub {
         ManagerClub.clubs.forEach((club, index) => {
             club.players.forEach((player, index) => {
                 if (player.name.toLowerCase().includes(name.toLowerCase())) {
-                    console.log(`Tên CLB: ${club.club}\tHuấn luyện viên:${club.coach.name}\t Tên cầu thủ:${club.players[index].name}\tQuốc tịch:${club.players[index].nationality}\t Ngày sinh:${club.players[index].age}\t Số bàn thắng đạt được:${club.players[index].numberGoal}\t Mức lương:${club.players[index].wagePlayer()}`);
+                    console.log(`
+                    - Tên CLB:${club.club}
+                    - Huấn luyện viên:${club.coach.name}
+                    - Tên cầu thủ:${club.players[index].name}
+                    - Quốc tịch:${club.players[index].nationality}
+                    - Ngày sinh:${club.players[index].age}
+                    - Số bàn thắng đạt được:${club.players[index].numberGoal}
+                    - Mức lương:${club.players[index].wagePlayer()}`);
                 }
             });
         });
@@ -82,7 +89,15 @@ class ManagerClub {
         ManagerClub.clubs.forEach((club, index) => {
             console.log(`\n Tên CLB:${club.club}- Coach: ${club.coach.name}`);
             club.players.forEach((player, index) => {
-                console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\tSố lần thi đấu:${player.turnCompetition}\tSố bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}`);
+                console.log(`
+                - Tên:${player.name}
+                - Tuổi:${player.age}
+                - Ngày sinh:${player.birth}
+                - Năm gia nhập:${player.yearOfJon}
+                - Vị trí thi đấu:${player.location}
+                - Số lần thi đấu:${player.turnCompetition}
+                - Số bàn thắng:${player.numberGoal}
+                - Lương:${player.wagePlayer()}`);
             });
         });
     }

@@ -15,6 +15,7 @@ import {menuPlayer} from "./Menu/menuPlayer";
 import {menuClub} from "./Menu/menuClub";
 import {regexEmail} from "./Regex/regEmail";
 import {regexPassword} from "./Regex/regPassword";
+import {IDplayer} from "./IDPlayer/IDplayer";
 import {
     inputAge,
     inputBrithDay,
@@ -33,17 +34,17 @@ let UserManager = new userManager();
 
 let ManagersClub = new ManagerClub()
 
-let PlayerFootball1 = new PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200000);
-let PlayerFootball2 = new PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300000);
-let PlayerFootball3 = new PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100000);
+let PlayerFootball1 = new PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200000,IDplayer());
+let PlayerFootball2 = new PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300000,IDplayer());
+let PlayerFootball3 = new PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100000,IDplayer());
 
-let PlayerFootball4 = new PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90000000);
-let PlayerFootball5 = new PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80000000);
-let PlayerFootball6 = new PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40000000);
+let PlayerFootball4 = new PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90000000,IDplayer());
+let PlayerFootball5 = new PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80000000,IDplayer());
+let PlayerFootball6 = new PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40000000,IDplayer());
 
-let PlayerFootball7 = new PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10);
-let PlayerFootball8 = new PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800);
-let PlayerFootball9 = new PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 4000);
+let PlayerFootball7 = new PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10,IDplayer());
+let PlayerFootball8 = new PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800,IDplayer());
+let PlayerFootball9 = new PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 4000,IDplayer());
 
 let Coah1 = new Coach('CAO VĂN TUYEN', 'LÀO', 19, '09/10/2008', 2010, 3, 100, 90);
 let Coah2 = new Coach('CAO VĂN A', 'THÁI', 19, '09/10/2010', 2011, 1, 99, 100);
@@ -160,7 +161,7 @@ function inputPlayerFootball() {
     let turnCompetition = inputTurnCompetition();
     let numberGoals = +inputNumberGoals();
     let wages = +inputWages();
-    return new PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages);
+    return new PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages,IDplayer());
 }
 
 function inputCoach() {
@@ -203,7 +204,16 @@ function ShowClub() {
         ManagersClub.getAllClub().forEach((club, index) => {
             console.log(`Tên CLB: ${club.club} - Coach: ${club.coach.name}`)
             club.players.forEach((player, index) => {
-                console.log(`Tên: ${player.name}\tTuổi: ${player.age}\tNgày sinh: ${player.birth}\tNăm gia nhập:${player.yearOfJon}\tVị trí thi đấu:${player.location}\t Số lần thi đấu:${player.turnCompetition}\t Số bàn thắng:${player.numberGoal}\tLương:${player.wagePlayer()}VND`);
+                console.log(`
+                - Tên:${player.name}
+                - Tuổi:${player.age}
+                - Ngày sinh: ${player.birth}
+                - Năm gia nhập:${player.yearOfJon}
+                - Vị trí thi đấu:${player.location}
+                - Số lần thi đấu:${player.turnCompetition}
+                - Số bàn thắng:${player.numberGoal}
+                - Lương:${player.wagePlayer()}VND
+                - ID:${player.randomId}`);
             })
         })
     }

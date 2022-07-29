@@ -5,6 +5,7 @@ export class PlayerFootball extends Person {
     private _turnCompetition: string;
     private _numberGoal: number;
     private _wage: number;
+    private _randomId:string;
 
     constructor(name: string,
                 nationality: string,
@@ -14,12 +15,14 @@ export class PlayerFootball extends Person {
                 location: string,
                 turnCompetition: string,
                 numberGoal: number,
-                wage: number) {
+                wage: number,
+                randomId:string) {
         super(name, nationality, age, birth, dateOfJon);
         this._location = location;
         this._turnCompetition = turnCompetition;
         this._numberGoal = numberGoal;
         this._wage = wage;
+        this._randomId = randomId;
     }
 
     get location(): string {
@@ -52,6 +55,14 @@ export class PlayerFootball extends Person {
 
     set wage(value: number) {
         this._wage = value;
+    }
+
+    get randomId(): string {
+        return this._randomId;
+    }
+
+    set randomId(value: string) {
+        this._randomId = value;
     }
 
     wagePlayer() {
