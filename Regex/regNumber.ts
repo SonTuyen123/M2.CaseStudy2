@@ -1,4 +1,4 @@
-export class RegNumber{
+export class regNumber {
     private NUMBER_REGEX: RegExp = /^\d+$/;
 
     public Validate_Number(regex: any) {

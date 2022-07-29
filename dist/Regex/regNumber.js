@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegNumber = void 0;
-class RegNumber {
+exports.regNumber = void 0;
+class regNumber {
     constructor() {
         this.NUMBER_REGEX = /^\d+$/;
     }
@@ -9,4 +9,4 @@ class RegNumber {
         return this.NUMBER_REGEX.test(regex);
     }
 }
-exports.RegNumber = RegNumber;
+exports.regNumber = regNumber;

@@ -7,7 +7,8 @@ export class Coach extends Person{
 
     constructor(name: string,
                 nationality: string,
-                age: string, birth: string,
+                age: number,
+                birth: string,
                 dateOfJon: number,
                 yearExperience: number,
                 factorWage: number,

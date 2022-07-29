@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegString = void 0;
-class RegString {
+exports.regString = void 0;
+class regString {
     constructor() {
         this.String_REGEX = /^[a-zA-Z]+$/;
     }
@@ -9,4 +9,4 @@ class RegString {
         return this.String_REGEX.test(regex);
     }
 }
-exports.RegString = RegString;
+exports.regString = regString;

@@ -8,7 +8,7 @@ export class PlayerFootball extends Person {
 
     constructor(name: string,
                 nationality: string,
-                age: string,
+                age: number,
                 birth: string,
                 dateOfJon: number,
                 location: string,

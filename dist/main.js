@@ -40,6 +40,9 @@ const menuPlayer_1 = require("./Menu/menuPlayer");
 const menuClub_1 = require("./Menu/menuClub");
 const regEmail_1 = require("./Regex/regEmail");
 const regPassword_1 = require("./Regex/regPassword");
+const Input_Player_1 = require("./Check_Input/Input_Player");
+const Input_Coach_1 = require("./Check_Input/Input_Coach");
+const Input_NameClub_1 = require("./Check_Input/Input_NameClub");
 let UserManager = new ManagerUser_1.userManager();
 let ManagersClub = new Manager_1.ManagerClub();
 let choice;
@@ -123,33 +126,33 @@ function Register() {
 function inputPlayerFootball() {
     console.log('------------------');
     console.log('Nhập thông tin PlayerFootball');
-    let name = rl.question('Nhập tên cầu thủ: ');
-    let nationality = rl.question('Nhập quốc tịch: ');
-    let age = rl.question('Nhập tuổi: ');
-    let birthDay = rl.question('Nhập ngày tháng năm sinh: ');
-    let yearOfJon = +rl.question('Nhập năm tham gia: ');
-    let location = rl.question('Nhập vị trí thi đấu: ');
-    let turnCompetition = rl.question('Nhập số lần thi đấu: ');
-    let numberGoals = +rl.question('Nhập số bàn thắng ghi được: ');
-    let wages = +rl.question('Nhập tiền lương(năm): ');
+    let name = (0, Input_Player_1.inputNamePlayer)();
+    let nationality = (0, Input_Player_1.inputNationality)();
+    let age = +(0, Input_Player_1.inputAge)();
+    let birthDay = (0, Input_Player_1.inputBrithDay)();
+    let yearOfJon = +(0, Input_Player_1.inputYear)();
+    let location = (0, Input_Player_1.inputLocation)();
+    let turnCompetition = (0, Input_Player_1.inputTurnCompetition)();
+    let numberGoals = +(0, Input_Player_1.inputNumberGoals)();
+    let wages = +(0, Input_Player_1.inputWages)();
     return new PlayerFootball_1.PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages);
 }
 function inputCoach() {
     console.log('------------------');
     console.log('Nhập thông tin Coach');
-    let name = rl.question('Nhập tên Coach: ');
-    let nationality = rl.question('Nhập quốc tịch: ');
-    let age = rl.question('Nhập tuổi: ');
-    let birthDay = rl.question('Nhập ngày tháng năm sinh: ');
-    let yearOfJon = +rl.question('Nhập năm tham gia: ');
-    let yearExperience = +rl.question('Nhập số năm kinh nghiệm: ');
-    let factorWage = +rl.question('Nhập hệ số lương: ');
-    let allowanceCoach = +rl.question('Nhập phụ cấp: ');
+    let name = (0, Input_Coach_1.inputNameCoach)();
+    let nationality = (0, Input_Player_1.inputNationality)();
+    let age = +(0, Input_Player_1.inputAge)();
+    let birthDay = (0, Input_Player_1.inputBrithDay)();
+    let yearOfJon = +(0, Input_Player_1.inputYear)();
+    let yearExperience = +(0, Input_Coach_1.inputYearExperience)();
+    let factorWage = +(0, Input_Coach_1.inputFactorWage)();
+    let allowanceCoach = +(0, Input_Coach_1.inputAllowanceCoach)();
     return new Coach_1.Coach(name, nationality, age, birthDay, yearOfJon, yearExperience, factorWage, allowanceCoach);
 }
 function addNewClub() {
     let player;
-    let nameClub = rl.question('Nhập tên Câu lạc bộ: ');
+    let nameClub = (0, Input_NameClub_1.inputNameClub)();
     if (!ManagersClub.findClub(nameClub)) {
         let coach = inputCoach();
         let newClub = new Club_1.Club(nameClub, coach);

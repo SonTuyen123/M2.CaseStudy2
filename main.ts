@@ -15,6 +15,19 @@ import {menuPlayer} from "./Menu/menuPlayer";
 import {menuClub} from "./Menu/menuClub";
 import {regexEmail} from "./Regex/regEmail";
 import {regexPassword} from "./Regex/regPassword";
+import {
+    inputAge,
+    inputBrithDay,
+    inputLocation,
+    inputNamePlayer,
+    inputNationality,
+    inputNumberGoals,
+    inputTurnCompetition,
+    inputWages,
+    inputYear
+} from "./Check_Input/Input_Player";
+import {inputAllowanceCoach, inputFactorWage, inputNameCoach, inputYearExperience} from "./Check_Input/Input_Coach";
+import {inputNameClub} from "./Check_Input/Input_NameClub";
 
 let UserManager = new userManager();
 
@@ -101,38 +114,39 @@ function Register() {
     console.table(UserManager.getAllUsers());
 }
 
+
 function inputPlayerFootball() {
     console.log('------------------');
     console.log('Nhập thông tin PlayerFootball');
-    let name = rl.question('Nhập tên cầu thủ: ');
-    let nationality = rl.question('Nhập quốc tịch: ');
-    let age = rl.question('Nhập tuổi: ');
-    let birthDay = rl.question('Nhập ngày tháng năm sinh: ');
-    let yearOfJon = +rl.question('Nhập năm tham gia: ');
-    let location = rl.question('Nhập vị trí thi đấu: ');
-    let turnCompetition = rl.question('Nhập số lần thi đấu: ');
-    let numberGoals = +rl.question('Nhập số bàn thắng ghi được: ');
-    let wages = +rl.question('Nhập tiền lương(năm): ');
+    let name = inputNamePlayer();
+    let nationality = inputNationality();
+    let age = +inputAge();
+    let birthDay = inputBrithDay();
+    let yearOfJon = +inputYear();
+    let location = inputLocation();
+    let turnCompetition = inputTurnCompetition();
+    let numberGoals = +inputNumberGoals();
+    let wages = +inputWages();
     return new PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages);
 }
 
 function inputCoach() {
     console.log('------------------')
     console.log('Nhập thông tin Coach');
-    let name = rl.question('Nhập tên Coach: ');
-    let nationality = rl.question('Nhập quốc tịch: ');
-    let age = rl.question('Nhập tuổi: ');
-    let birthDay = rl.question('Nhập ngày tháng năm sinh: ');
-    let yearOfJon = +rl.question('Nhập năm tham gia: ');
-    let yearExperience = +rl.question('Nhập số năm kinh nghiệm: ');
-    let factorWage = +rl.question('Nhập hệ số lương: ');
-    let allowanceCoach = +rl.question('Nhập phụ cấp: ');
+    let name = inputNameCoach();
+    let nationality = inputNationality();
+    let age = +inputAge();
+    let birthDay = inputBrithDay();
+    let yearOfJon = +inputYear();
+    let yearExperience = +inputYearExperience();
+    let factorWage = +inputFactorWage();
+    let allowanceCoach = +inputAllowanceCoach();
     return new Coach(name, nationality, age, birthDay, yearOfJon, yearExperience, factorWage, allowanceCoach)
 }
 
 function addNewClub() {
     let player;
-    let nameClub = rl.question('Nhập tên Câu lạc bộ: ');
+    let nameClub = inputNameClub();
     if (!ManagersClub.findClub(nameClub)) {
         let coach = inputCoach();
         let newClub = new Club(nameClub, coach);

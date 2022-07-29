@@ -1,10 +1,10 @@
 export class Person {
     private _name: string;
     private _nationality: string;
-    private _age: string;
+    private _age: number;
     private _birth: string;
     private _yearOfJon: number;
-    constructor(name: string, nationality: string, age: string, birth: string, dateOfJon: number) {
+    constructor(name: string, nationality: string, age: number, birth: string, dateOfJon: number) {
         this._name = name;
         this._nationality = nationality;
         this._age = age;
@@ -28,11 +28,11 @@ export class Person {
         this._nationality = value;
     }
 
-    get age(): string {
+    get age(): number {
         return this._age;
     }
 
-    set age(value: string) {
+    set age(value: number) {
         this._age = value;
     }
 
