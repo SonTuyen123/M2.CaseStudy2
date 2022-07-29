@@ -279,7 +279,7 @@ function deletePlayerInClub() {
 
 }
 
-function aditPlayerBynamePlayer(nameClub: string) {
+function aditPlayerByNamePlayer(nameClub: string) {
     ShowPlayer(nameClub);
     let namePlayer = rl.question('Nhập tên cầu thủ cần chỉnh sửa: ');
     if (ManagersClub.findNameInPlayer2(namePlayer)) {
@@ -288,7 +288,7 @@ function aditPlayerBynamePlayer(nameClub: string) {
     } else {
         console.log(` Cầu thủ tên ${namePlayer} không tồn tại `);
         console.log('Mời nhập lại ');
-        aditPlayerBynamePlayer(nameClub)
+        aditPlayerByNamePlayer(nameClub)
     }
 }
 
@@ -296,7 +296,7 @@ function editPllayer() {
     ShowNameClub();
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn chỉnh sửa cầu thủ: ');
     if (ManagersClub.findClub(nameClub)) {
-        aditPlayerBynamePlayer(nameClub);
+        aditPlayerByNamePlayer(nameClub);
     } else {
         console.log(` CLB ${nameClub} không tồn tại `);
         console.log('Mời nhập lại !');
