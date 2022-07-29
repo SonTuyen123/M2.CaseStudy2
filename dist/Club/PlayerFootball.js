@@ -42,7 +42,7 @@ class PlayerFootball extends Person_1.Person {
         this._randomId = value;
     }
     wagePlayer() {
-        return this.wage + super.allowance() + this.numberGoal * 1000000;
+        return this.wage + super.allowance() + this.numberGoal * 10;
     }
 }
 exports.PlayerFootball = PlayerFootball;

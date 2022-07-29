@@ -53,12 +53,157 @@ class ManagerClub {
         ManagerClub.clubs.forEach((club, index) => {
             if (club.club === nameclub) {
                 club.players.forEach((player, index) => {
-                    if (player.name[index] === name) {
+                    if (player.name === name) {
                         club.players[index] = players;
+                        console.log(`
+                         - Tên: ${club.players[index].name}
+                         - Quốc tịch: ${club.players[index].nationality}
+                         - Tuổi:${club.players[index].age}
+                         - Ngày sinh:${club.players[index].birth}
+                         - Số bàn thắng:${club.players[index].numberGoal}
+                         - Mức lương :${club.players[index].wage}
+                    `);
                     }
                 });
             }
         });
+    }
+    IDNamePlayerForClub(id) {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    console.log(`
+                    - Tên: ${club.players[index].name}
+                    - Quốc tịch: ${club.players[index].nationality}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
+                    - Số bàn thắng:${club.players[index].numberGoal}
+                    - Mức lương :${club.players[index].wage}
+                    `);
+                }
+            });
+        });
+    }
+    editNamePlayerForClub(id, newName) {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    player.name = newName;
+                    console.log(`
+                    - Tên: ${club.players[index].name}
+                    - Quốc tịch: ${club.players[index].nationality}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
+                    - Số bàn thắng:${club.players[index].numberGoal}
+                    - Mức lương :${club.players[index].wage}
+                    `);
+                }
+            });
+        });
+    }
+    editAgePlayerForClub(id, age) {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    player.age = age;
+                    console.log(`
+                    - Tên: ${club.players[index].name}
+                    - Quốc tịch: ${club.players[index].nationality}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
+                    - Số bàn thắng:${club.players[index].numberGoal}
+                    - Mức lương :${club.players[index].wage}
+                    `);
+                }
+            });
+        });
+    }
+    editNationalityPlayerForClub(id, nationality) {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    player.nationality = nationality;
+                    console.log(`
+                    - Tên: ${club.players[index].name}
+                    - Quốc tịch: ${club.players[index].nationality}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
+                    - Số bàn thắng:${club.players[index].numberGoal}
+                    - Mức lương :${club.players[index].wage}
+                    `);
+                }
+            });
+        });
+    }
+    editWagePlayerForClub(id, wage) {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    player.wage = wage;
+                    console.log(`
+                    - Tên: ${club.players[index].name}
+                    - Quốc tịch: ${club.players[index].nationality}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
+                    - Số bàn thắng:${club.players[index].numberGoal}
+                    - Mức lương :${club.players[index].wage}
+                    `);
+                }
+            });
+        });
+    }
+    editNumberGoalsPlayerForClub(id, numberGoals) {
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    player.numberGoal = numberGoals;
+                    console.log(`
+                    - Tên: ${club.players[index].name}
+                    - Quốc tịch: ${club.players[index].nationality}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
+                    - Số bàn thắng:${club.players[index].numberGoal}
+                    - Mức lương :${club.players[index].wage}
+                    `);
+                }
+            });
+        });
+    }
+    findIdInPlayers(id) {
+        let flag = false;
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.randomId === id) {
+                    return flag = true;
+                }
+                return flag;
+            });
+        });
+        return flag;
+    }
+    findNameInPlayer(name) {
+        let flag = false;
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.name.toLowerCase().includes(name.toLowerCase())) {
+                    return flag = true;
+                }
+                return flag;
+            });
+        });
+        return flag;
+    }
+    findNameInPlayer2(name) {
+        let flag = false;
+        ManagerClub.clubs.forEach((club, index) => {
+            club.players.forEach((player, index) => {
+                if (player.name == name) {
+                    return flag = true;
+                }
+                return flag;
+            });
+        });
+        return flag;
     }
     findPlayersinClub(name) {
         ManagerClub.clubs.forEach((club, index) => {
@@ -69,9 +214,11 @@ class ManagerClub {
                     - Huấn luyện viên:${club.coach.name}
                     - Tên cầu thủ:${club.players[index].name}
                     - Quốc tịch:${club.players[index].nationality}
-                    - Ngày sinh:${club.players[index].age}
+                    - Tuổi:${club.players[index].age}
+                    - Ngày sinh:${club.players[index].birth}
                     - Số bàn thắng đạt được:${club.players[index].numberGoal}
-                    - Mức lương:${club.players[index].wagePlayer()}`);
+                    - Mức lương:${club.players[index].wage}
+                    -ID:${club.players[index].randomId}`);
                 }
             });
         });

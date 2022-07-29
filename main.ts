@@ -29,22 +29,24 @@ import {
 } from "./Check_Input/Input_Player";
 import {inputAllowanceCoach, inputFactorWage, inputNameCoach, inputYearExperience} from "./Check_Input/Input_Coach";
 import {inputNameClub} from "./Check_Input/Input_NameClub";
+import {MenuEditPlayer} from "./Menu/menuEditPlayer";
+import {EMUN_MENU_EDIT_PLAYER} from "./Enum/EMUN_MENU_EDIT_PLAYER";
 
 let UserManager = new userManager();
 
 let ManagersClub = new ManagerClub()
 
-let PlayerFootball1 = new PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200000,IDplayer());
-let PlayerFootball2 = new PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300000,IDplayer());
-let PlayerFootball3 = new PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100000,IDplayer());
+let PlayerFootball1 = new PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200, IDplayer());
+let PlayerFootball2 = new PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300, IDplayer());
+let PlayerFootball3 = new PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100, IDplayer());
 
-let PlayerFootball4 = new PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90000000,IDplayer());
-let PlayerFootball5 = new PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80000000,IDplayer());
-let PlayerFootball6 = new PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40000000,IDplayer());
+let PlayerFootball4 = new PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90, IDplayer());
+let PlayerFootball5 = new PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80, IDplayer());
+let PlayerFootball6 = new PlayerFootball('THAO', 'Việt Nam', 23, '7/08/1995', 2021, 'DỰ BỊ', '19', 99, 40, IDplayer());
 
-let PlayerFootball7 = new PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10,IDplayer());
-let PlayerFootball8 = new PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800,IDplayer());
-let PlayerFootball9 = new PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 4000,IDplayer());
+let PlayerFootball7 = new PlayerFootball('NGUYỄN MINH ĐỨC', 'Việt Nam', 37, '27/01/1987', 2020, 'TIỀN DẠO ', '97', 12, 10, IDplayer());
+let PlayerFootball8 = new PlayerFootball('KIÊN BÙI', 'Việt Nam', 17, '2/01/1995', 2020, 'THỦ MÔN', '19', 0, 800, IDplayer());
+let PlayerFootball9 = new PlayerFootball('THAO PHẠM', 'Việt Nam', 23, '7/08/1994', 2021, 'DỰ BỊ', '19', 99, 400, IDplayer());
 
 let Coah1 = new Coach('CAO VĂN TUYEN', 'LÀO', 19, '09/10/2008', 2010, 3, 100, 90);
 let Coah2 = new Coach('CAO VĂN A', 'THÁI', 19, '09/10/2010', 2011, 1, 99, 100);
@@ -161,7 +163,7 @@ function inputPlayerFootball() {
     let turnCompetition = inputTurnCompetition();
     let numberGoals = +inputNumberGoals();
     let wages = +inputWages();
-    return new PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages,IDplayer());
+    return new PlayerFootball(name, nationality, age, birthDay, yearOfJon, location, turnCompetition, numberGoals, wages, IDplayer());
 }
 
 function inputCoach() {
@@ -219,6 +221,32 @@ function ShowClub() {
     }
 }
 
+function ShowNameClub() {
+    if (ManagersClub.getAllClub().length == 0) {
+        console.log('Không có câu lạc bộ nào ! ');
+    } else {
+        ManagersClub.getAllClub().forEach((club, index) => {
+            console.log(`Tên CLB: ${club.club} - Coach: ${club.coach.name}`)
+        })
+    }
+}
+
+function ShowPlayer(nameClub: string) {
+    if (ManagersClub.getAllClub().length == 0) {
+        console.log('Không có câu lạc bộ nào ! ');
+    } else {
+        ManagersClub.getAllClub().forEach((club, index) => {
+            if (club.club === nameClub) {
+                club.players.forEach((player, index) => {
+                    console.log(`
+                    - Tên:${player.name}
+                    `);
+                })
+            }
+        })
+    }
+}
+
 function SortPlayerByName() {
     ManagersClub.SortNamePlayers();
 }
@@ -251,17 +279,94 @@ function deletePlayerInClub() {
 
 }
 
-function editPllayer() {
-    let nameClub = rl.question('Nhập tên câu lạc bộ muốn chỉnh sửa cầu thủ: ');
+function aditPlayerBynamePlayer(nameClub: string) {
+    ShowPlayer(nameClub);
     let namePlayer = rl.question('Nhập tên cầu thủ cần chỉnh sửa: ');
-    let player = inputPlayerFootball()
-    ManagersClub.editPlayer(nameClub, namePlayer, player);
+    if (ManagersClub.findNameInPlayer2(namePlayer)) {
+        let player = inputPlayerFootball()
+        ManagersClub.editPlayer(nameClub, namePlayer, player);
+    } else {
+        console.log(` Cầu thủ tên ${namePlayer} không tồn tại `);
+        console.log('Mời nhập lại ');
+        aditPlayerBynamePlayer(nameClub)
+    }
+}
+
+function editPllayer() {
+    ShowNameClub();
+    let nameClub = rl.question('Nhập tên câu lạc bộ muốn chỉnh sửa cầu thủ: ');
+    if (ManagersClub.findClub(nameClub)) {
+        aditPlayerBynamePlayer(nameClub);
+    } else {
+        console.log(` CLB ${nameClub} không tồn tại `);
+        console.log('Mời nhập lại !');
+        editPllayer();
+    }
+
 }
 
 function findPlayersInClub() {
     let namePlayer = rl.question('Nhập tên cầu thủ cần tìn: ');
     ManagersClub.findPlayersinClub(namePlayer);
 }
+
+function findIDInPlayer() {
+    let id = rl.question('Nhập id: ');
+    if (ManagersClub.findIdInPlayers(id)) {
+        ManagersClub.IDNamePlayerForClub(id);
+        editPlayers(id);
+    } else {
+        console.log(`ID = ${id} không tồn tại `);
+        console.log('Mời bạn nhập lại ');
+        findIDInPlayer();
+    }
+}
+
+function aditPlayer() {
+    let name = rl.question('Nhập tên cầu thủ muốn sửa: ');
+    if (ManagersClub.findNameInPlayer(name)) {
+        ManagersClub.findPlayersinClub(name);
+        findIDInPlayer();
+    } else {
+        console.log(` Tên ${name} không tồn tại `);
+        console.log('Mời chọn lại ');
+    }
+}
+
+function editPlayers(id: string) {
+    let chon;
+    do {
+        MenuEditPlayer();
+        chon = +rl.question('Nhập lựa chọn: ');
+        switch (chon) {
+            case EMUN_MENU_EDIT_PLAYER.CASE_ONE:
+                let name = rl.question('Nhập tên cần sửa: ');
+                ManagersClub.editNamePlayerForClub(id, name);
+                break;
+            case EMUN_MENU_EDIT_PLAYER.CASE_TWO:
+                let age = +rl.question('Nhập số tuổi muốn thay đổi ');
+                ManagersClub.editAgePlayerForClub(id, age);
+                break;
+            case EMUN_MENU_EDIT_PLAYER.CASE_THREE:
+                let nationality = rl.question('Nhập quốc tịch mới: ');
+                ManagersClub.editNationalityPlayerForClub(id, nationality);
+                break;
+            case EMUN_MENU_EDIT_PLAYER.CASE_FOUR:
+                let wages = +rl.question('Nhập số lương mới của cầu thủ: ');
+                ManagersClub.editWagePlayerForClub(id, wages);
+                break;
+            case EMUN_MENU_EDIT_PLAYER.CASE_FIVE:
+                let numberGoals = +rl.question('Cập nhật số bàn thắng mới ');
+                ManagersClub.editNumberGoalsPlayerForClub(id, numberGoals);
+                break;
+            case EMUN_MENU_EDIT_PLAYER.CASE_SIX:
+                break;
+            default:
+                console.log(`Mời chọn lại `);
+        }
+    } while (chon != 6)
+}
+
 
 function CallMenuClub() {
     let chon;
@@ -285,6 +390,9 @@ function CallMenuClub() {
                 deletePlayerInClub();
                 break;
             case EMUN_MENU_CLUB.CASE_SIX:
+                break;
+            case EMUN_MENU_CLUB.CASE_SEVEN:
+                aditPlayer();
                 break;
             default:
                 console.log('Nhập lại !');

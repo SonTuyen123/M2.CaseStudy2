@@ -66,6 +66,6 @@ export class PlayerFootball extends Person {
     }
 
     wagePlayer() {
-        return this.wage + super.allowance() + this.numberGoal * 1000000;
+        return this.wage + super.allowance() + this.numberGoal * 10;
     }
 }
