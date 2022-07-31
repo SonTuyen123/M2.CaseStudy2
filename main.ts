@@ -64,7 +64,7 @@ club2.setPlayers(PlayerFootball5);
 club2.setPlayers(PlayerFootball6);
 ManagersClub.addNewClub(club2);
 
-let club3 = new Club('VIỆT NAM', Coah3);
+let club3 = new Club('VIET NAM', Coah3);
 club3.setPlayers(PlayerFootball7);
 club3.setPlayers(PlayerFootball8);
 club3.setPlayers(PlayerFootball9);
@@ -226,7 +226,7 @@ function ShowNameClub() {
         console.log('Không có câu lạc bộ nào ! ');
     } else {
         ManagersClub.getAllClub().forEach((club, index) => {
-            console.log(`Tên CLB: ${club.club} - Coach: ${club.coach.name}`)
+            console.log(`Tên CLB: ${club.club}`)
         })
     }
 }
@@ -267,14 +267,27 @@ function addNewPlayerInClub() {
     }
 }
 
+function InpuNametdeletePlayerInClub(nameClub: string) {
+    ShowPlayer(nameClub)
+    let namePlayer = rl.question('Nhập tên cầu thủ cần xóa: ');
+    if (ManagersClub.findNameInPlayer2(namePlayer)) {
+        ManagersClub.deletePlayer(nameClub, namePlayer);
+        console.log(`Đã xóa cầu thủ ${namePlayer} ra khỏi CLB ${nameClub}`)
+    }else {
+        console.log(`Cầu thủ ${namePlayer} không tồn tại trong câu lạc bộ ${nameClub}`);
+        console.log('Mời nhập lại !');
+        InpuNametdeletePlayerInClub(nameClub);
+    }
+}
+
 function deletePlayerInClub() {
+    ShowNameClub();
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn xóa cầu thủ: ');
     if (!ManagersClub.findClub(nameClub)) {
         console.log(`Câu lạc bộ ${nameClub} không tồn tại ! Mời nhập lại !`);
         deletePlayerInClub();
     } else {
-        let namePlayer = rl.question('Nhập tên cầu thủ cần xóa: ');
-        ManagersClub.deletePlayer(nameClub, namePlayer);
+        InpuNametdeletePlayerInClub(nameClub);
     }
 
 }

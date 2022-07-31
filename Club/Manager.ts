@@ -210,7 +210,7 @@ export class ManagerClub {
         let flag = false;
         ManagerClub.clubs.forEach((club, index) => {
             club.players.forEach((player, index) => {
-                if (player.name == name) {
+                if (player.name === name) {
                     return flag = true;
                 }
                 return flag
