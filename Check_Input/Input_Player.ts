@@ -1,9 +1,9 @@
 import {regString} from "../Regex/regString";
 import {regNumber} from "../Regex/regNumber";
 import {regexDate} from "../Regex/regDate";
-
-import * as rl from "readline-sync";
 import {regexYear} from "../Regex/regYear";
+import * as rl from "readline-sync";
+
 
 export function inputNamePlayer(){
     let RegString =new regString();
