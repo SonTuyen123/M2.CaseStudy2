@@ -23,16 +23,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.inputNameClub = void 0;
-const regString_1 = require("../Regex/regString");
-const rl = __importStar(require("readline-sync"));
-function inputNameClub() {
-    let RegString = new regString_1.regString();
-    let nameClub = rl.question('Nhập tên Câu lạc bộ: ');
-    while (!RegString.Validate_String(nameClub)) {
-        console.log('Tên Club không được có số và ký tự đặc biệt');
-        nameClub = rl.question('Nhập tên Câu lạc bộ: ');
+exports.Databasse = void 0;
+const fs = __importStar(require("fs"));
+const Club_1 = require("./Club/Club");
+class Databasse {
+    constructor() {
+        this.data = JSON.parse(fs.readFileSync("./data/Club.json", {
+            encoding: "utf8",
+            flag: "r"
+        }));
+        this.cclub = [];
+        for (const club of this.data) {
+            let club = this.data._club;
+            let coach = this.data._coach;
+            let players = this.data._players;
+            const Clubs = new Club_1.Club(club, coach);
+            this.cclub.push(Clubs);
+        }
     }
-    return nameClub;
+    get club() {
+        return this.cclub;
+    }
 }
-exports.inputNameClub = inputNameClub;
+exports.Databasse = Databasse;

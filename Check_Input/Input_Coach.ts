@@ -5,46 +5,34 @@ import * as rl from "readline-sync";
 export function inputNameCoach(){
     let RegString =new regString();
     let name = rl.question('Nhập tên Coach: ');
-    if(RegString.Validate_String(name)){
-        return name;
-    }else {
+    while (!RegString.Validate_String(name)){
         console.log('Tên Coach không được có số và ký tự đặc biệt');
-        console.log('Nhập lại ');
-        inputNameCoach();
+        name = rl.question('Nhập tên Coach:  ');
     }return name;
 }
 
 export function inputYearExperience(){
     let RegNumber =new regNumber();
     let turnCompetition = rl.question('Nhập số năm kinh nghiệm: ');
-    if(RegNumber.Validate_Number(turnCompetition)){
-        return turnCompetition;
-    }else {
+    while (!RegNumber.Validate_Number(turnCompetition)){
         console.log('Số năm kinh nghiệm không được chứa chữ cái và ký tự đặc biệt');
-        console.log('Nhập lại ');
-        inputYearExperience();
+        turnCompetition = rl.question('Nhập số năm kinh nghiệm:  ');
     }return turnCompetition;
 }
 export function inputFactorWage(){
     let RegNumber =new regNumber();
     let factorWage = rl.question('Nhập hệ số lương: ');
-    if(RegNumber.Validate_Number(factorWage)){
-        return factorWage;
-    }else {
+    while (!RegNumber.Validate_Number(factorWage)){
         console.log('Hệ số lương không được chứa chữ cái và ký tự đặc biệt');
-        console.log('Nhập lại ');
-        inputFactorWage();
+        factorWage = rl.question('Nhập hệ số lương:  ');
     }return factorWage;
 }
 export function inputAllowanceCoach(){
     let RegNumber =new regNumber();
     let allowanceCoach = rl.question('Nhập phụ cấp: ');
-    if(RegNumber.Validate_Number(allowanceCoach)){
-        return allowanceCoach;
-    }else {
+    while (!RegNumber.Validate_Number(allowanceCoach)){
         console.log('Tiền phụ cấp không được chứa chữ cái và ký tự đặc biệt');
-        console.log('Nhập lại ');
-        inputAllowanceCoach();
+        allowanceCoach = rl.question('Nhập phụ cấp:  ');
     }return allowanceCoach;
 }
 

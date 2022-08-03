@@ -31,14 +31,15 @@ import {inputAllowanceCoach, inputFactorWage, inputNameCoach, inputYearExperienc
 import {inputNameClub} from "./Check_Input/Input_NameClub";
 import {MenuEditPlayer} from "./Menu/menuEditPlayer";
 import {EMUN_MENU_EDIT_PLAYER} from "./Enum/EMUN_MENU_EDIT_PLAYER";
+import  fs from "fs";
 
 let UserManager = new userManager();
 
 let ManagersClub = new ManagerClub()
 
-let PlayerFootball1 = new PlayerFootball('CR7', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200, IDplayer());
-let PlayerFootball2 = new PlayerFootball('Messi', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300, IDplayer());
-let PlayerFootball3 = new PlayerFootball('Kelvin', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100, IDplayer());
+let PlayerFootball1 = new PlayerFootball('Anh Bẩy', 'Việt Nam', 37, '27/01/2015', 2014, 'TIỀN DẠO ', '10', 20, 200, IDplayer());
+let PlayerFootball2 = new PlayerFootball('Rô Béo', 'Việt Nam', 17, '2/01/2016', 2014, 'THỦ MÔN', '9', 0, 300, IDplayer());
+let PlayerFootball3 = new PlayerFootball('hari mac quai', 'Việt Nam', 23, '7/08/2018', 2014, 'HẬU VỀ', '19', 9, 100, IDplayer());
 
 let PlayerFootball4 = new PlayerFootball('NGỌC', 'Việt Nam', 37, '27/01/1993', 2020, 'TIỀN DẠO ', '189', 21, 90, IDplayer());
 let PlayerFootball5 = new PlayerFootball('KIỆT', 'Việt Nam', 17, '2/01/1998', 2020, 'THỦ MÔN', '19', 0, 80, IDplayer());
@@ -69,6 +70,23 @@ club3.setPlayers(PlayerFootball7);
 club3.setPlayers(PlayerFootball8);
 club3.setPlayers(PlayerFootball9);
 ManagersClub.addNewClub(club3);
+
+// function writeClub(data: any[]) {
+//     let json = JSON.stringify(data);
+//     fs.writeFile("./data/Club.json", json, (err: any) => {
+//         if (err) throw err;
+//         console.log('Data written to file');
+//     });
+// }
+// function loadClub() {
+//     let rawData = fs.readFileSync("./data/Club.json");
+//
+//     // @ts-ignore
+//     ManagerClub.clubs = JSON.parse(rawData);
+// }
+// loadClub();
+
+
 
 
 function inputEmail() {
@@ -257,6 +275,7 @@ function deleteClub() {
 }
 
 function addNewPlayerInClub() {
+    ShowNameClub();
     let nameClub = rl.question('Nhập tên câu lạc bộ muốn thêm cầu thủ: ');
     if (!ManagersClub.findClub(nameClub)) {
         console.log(`Không tồn tại câu lạc bộ ${nameClub}`);
@@ -481,6 +500,7 @@ do {
             Register();
             break;
         case EMUN_MENU.CASE_ZERO:
+            // writeClub(ManagersClub.getAllClub())
             break;
         default:
             console.log('Mời bạn nhập lại ');
